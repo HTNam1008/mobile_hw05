@@ -29,7 +29,7 @@ public class FragmentList extends Fragment {
     Integer[] icons={R.drawable.actor_1,R.drawable.actor_2,R.drawable.actor_3,R.drawable.actor_4,R.drawable.actor_5,R.drawable.actor_6,R.drawable.actor_7,R.drawable.actor_9,R.drawable.actor_10,R.drawable.actor_2,R.drawable.actor_1,R.drawable.actor_2,R.drawable.actor_3,R.drawable.actor_4,R.drawable.actor_5,R.drawable.actor_6,R.drawable.actor_7,R.drawable.actor_9,R.drawable.actor_10,R.drawable.actor_2};
 
     String classID="21CTT2";
-
+    TextView txtChoosen;
     public static FragmentList newInstance(String arg) {
         FragmentList fragment = new FragmentList();
         Bundle args = new Bundle();
@@ -55,7 +55,7 @@ public class FragmentList extends Fragment {
                              Bundle savedInstanceState) {
 
         LinearLayout layout_list = (LinearLayout) inflater.inflate(R.layout.fragment_list, null);
-        final TextView txtBlue = (TextView) layout_list.findViewById(R.id.txtChoosen);
+        txtChoosen = (TextView) layout_list.findViewById(R.id.txtChoosen);
         ListView listView = (ListView) layout_list.findViewById(R.id.listView);
 
         listView.setBackgroundColor(Color.parseColor("#ffccddff"));
@@ -69,11 +69,16 @@ public class FragmentList extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long i) {
                 main.onMsgFromFragToMain("list-frag",id[position],fullName[position],classID,points[position]);
-                txtBlue.setText("Mã số: "+id[position]);
+                txtChoosen.setText("Mã số: "+id[position]);
             }
         });
-
         return layout_list;
+    }
+
+    public void onMsgFromMainToFragment(int position) {
+        txtChoosen.setText("Mã số: "+id[position]);
+        main.onMsgFromFragToMain("list-frag",id[position],fullName[position],classID,points[position]);
+
     }
 
 }

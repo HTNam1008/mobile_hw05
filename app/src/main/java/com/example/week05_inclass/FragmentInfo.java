@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
     TextView txtName;
     TextView txtClass;
     TextView txtPoint;
+    Button btnFirst;
     public static FragmentInfo newInstance(String arg) {
         FragmentInfo fragment = new FragmentInfo();
         Bundle args = new Bundle();
@@ -50,7 +52,13 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         txtName=(TextView) layout_info.findViewById(R.id.txtName);
         txtClass=(TextView) layout_info.findViewById(R.id.txtClass);
         txtPoint=(TextView) layout_info.findViewById(R.id.txtPoint);
-
+        btnFirst=(Button) layout_info.findViewById(R.id.btnFirst);
+        btnFirst.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main.onMsgFromFragToMain("btnFirst",0);
+            }
+        });
 //        try {
 //            Bundle arguments = getArguments();
 //        }

@@ -39,4 +39,16 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
             }
         }
     }
+
+    public void onMsgFromFragToMain(String sender, int position) {
+        if(sender.equals("btnFirst"))
+        {
+            try{
+                fragmentList.onMsgFromMainToFragment(position);
+            }
+            catch (Exception e) {
+                Log.e("ERROR", e.getMessage());
+            }
+        }
+    }
 }
