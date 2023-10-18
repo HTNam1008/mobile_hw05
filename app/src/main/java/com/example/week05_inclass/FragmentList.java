@@ -88,7 +88,6 @@ public class FragmentList extends Fragment {
         }
         txtChoosen.setText("Mã số: "+id[currentPosition]);
         main.onMsgFromFragToMain("list-frag",id[currentPosition],fullName[currentPosition],classID,points[currentPosition]);
-
     }
 
     public void onMsgFromMainToFragment(String Sender){

@@ -13,7 +13,7 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
     FragmentList fragmentList;
     FragmentInfo fragmentInfo;
 
-    public boolean isDisable=false;
+    public boolean isPreDisable=false;
 
 
     @Override
@@ -32,10 +32,11 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
         ft.commit();
     }
     @Override
+    //Main nhận thông tin từ FragList và gửi cho FragInfo
     public void onMsgFromFragToMain(String sender, String id, String fullName, String classId, String point) {
         if (sender.equals("list-frag-first")) {
             try {
-                isDisable=true;
+                isPreDisable=true;
                 fragmentInfo.onMsgFromMainToFragment(id, "Họ tên: "+fullName,"Lớp: "+classId, "Điểm trung bình: "+point);
             }
             catch (Exception e) {
@@ -46,7 +47,7 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
         else if (sender.equals("list-frag")) {
 
             try {
-                isDisable=false;
+                isPreDisable=false;
                 fragmentInfo.onMsgFromMainToFragment(id, "Họ tên: "+fullName,"Lớp: "+classId, "Điểm trung bình: "+point);
 //                fragmentInfo.btnPrevious.setEnabled(true);
             }
@@ -57,8 +58,9 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
 
     }
 
+    //Main nhận thông tin từ FragInfo và gửi cho FragList
     public void onMsgFromFragToMain(String sender, int position) {
-        if(sender.equals("btnFirst"))
+        if(sender.equals("btnFirst") || sender.equals("btnLast"))
         {
             try{
                 fragmentList.onMsgFromMainToFragment(position);

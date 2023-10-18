@@ -30,6 +30,8 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
     Button btnFirst;
 
     public Button btnPrevious;
+    public Button btnLast;
+    public int arrayLength;
 
     public static FragmentInfo newInstance(String arg) {
         FragmentInfo fragment = new FragmentInfo();
@@ -46,6 +48,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
             throw new IllegalStateException( "Activity must implement MainCallbacks");
         }
         main = (MainActivity) getActivity();
+        arrayLength = main.fragmentList.id.length;
     }
 
     @Override
@@ -60,6 +63,8 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         btnFirst=(Button) layout_info.findViewById(R.id.btnFirst);
         btnPrevious=(Button) layout_info.findViewById(R.id.btnPre);
         btnPrevious.setEnabled(false);
+        btnLast = (Button) layout_info.findViewById(R.id.btnLast);
+
 
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +81,14 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
                 main.onMsgFromFragToMain("btnPre",0);
             }
         });
+
+        btnLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main.onMsgFromFragToMain("btnLast",arrayLength-1);
+            }
+        });
+
         try {
             Bundle arguments = getArguments();
         }
@@ -91,7 +104,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         txtName.setText(fullName);
         txtClass.setText(classId);
         txtPoint.setText(point);
-        if (main.isDisable){
+        if (main.isPreDisable){
             btnPrevious.setEnabled(false);
         }
         else{
