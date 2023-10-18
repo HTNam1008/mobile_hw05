@@ -5,12 +5,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 
 public class MainActivity extends FragmentActivity implements MainCallBacks {
     FragmentTransaction ft;
     FragmentList fragmentList;
     FragmentInfo fragmentInfo;
+
+    public boolean isDisable=false;
 
 
     @Override
@@ -30,14 +33,28 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
     }
     @Override
     public void onMsgFromFragToMain(String sender, String id, String fullName, String classId, String point) {
-        if (sender.equals("list-frag")) {
+        if (sender.equals("list-frag-first")) {
             try {
+                isDisable=true;
                 fragmentInfo.onMsgFromMainToFragment(id, "Họ tên: "+fullName,"Lớp: "+classId, "Điểm trung bình: "+point);
             }
             catch (Exception e) {
                 Log.e("ERROR", e.getMessage());
             }
+
         }
+        else if (sender.equals("list-frag")) {
+
+            try {
+                isDisable=false;
+                fragmentInfo.onMsgFromMainToFragment(id, "Họ tên: "+fullName,"Lớp: "+classId, "Điểm trung bình: "+point);
+//                fragmentInfo.btnPrevious.setEnabled(true);
+            }
+            catch (Exception e) {
+                Log.e("ERROR", e.getMessage());
+            }
+        }
+
     }
 
     public void onMsgFromFragToMain(String sender, int position) {
@@ -45,6 +62,15 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
         {
             try{
                 fragmentList.onMsgFromMainToFragment(position);
+            }
+            catch (Exception e) {
+                Log.e("ERROR", e.getMessage());
+            }
+        }
+
+        if (sender.equals("btnPre")){
+            try{
+                fragmentList.onMsgFromMainToFragment("previous");
             }
             catch (Exception e) {
                 Log.e("ERROR", e.getMessage());

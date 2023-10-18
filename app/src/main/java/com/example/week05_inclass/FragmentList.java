@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +31,7 @@ public class FragmentList extends Fragment {
 
     String classID="21CTT2";
     TextView txtChoosen;
+    int currentPosition=0;
     public static FragmentList newInstance(String arg) {
         FragmentList fragment = new FragmentList();
         Bundle args = new Bundle();
@@ -68,6 +70,10 @@ public class FragmentList extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long i) {
+                currentPosition=position;
+                if (position==0){
+                    main.onMsgFromFragToMain("list-frag-first",id[position],fullName[position],classID,points[position]);
+                }
                 main.onMsgFromFragToMain("list-frag",id[position],fullName[position],classID,points[position]);
                 txtChoosen.setText("Mã số: "+id[position]);
             }
@@ -76,9 +82,24 @@ public class FragmentList extends Fragment {
     }
 
     public void onMsgFromMainToFragment(int position) {
-        txtChoosen.setText("Mã số: "+id[position]);
-        main.onMsgFromFragToMain("list-frag",id[position],fullName[position],classID,points[position]);
+        currentPosition=position;
+        if (currentPosition==0){
+            main.onMsgFromFragToMain("list-frag-first",id[currentPosition],fullName[currentPosition],classID,points[currentPosition]);
+        }
+        txtChoosen.setText("Mã số: "+id[currentPosition]);
+        main.onMsgFromFragToMain("list-frag",id[currentPosition],fullName[currentPosition],classID,points[currentPosition]);
 
+    }
+
+    public void onMsgFromMainToFragment(String Sender){
+        if (Sender.equals("previous")){
+            currentPosition=currentPosition-1;
+            if (currentPosition==0){
+                main.onMsgFromFragToMain("list-frag-first",id[currentPosition],fullName[currentPosition],classID,points[currentPosition]);
+            }
+            txtChoosen.setText("Mã số: "+id[currentPosition]);
+            main.onMsgFromFragToMain("list-frag",id[currentPosition],fullName[currentPosition],classID,points[currentPosition]);
+        }
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.week05_inclass;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -26,6 +28,9 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
     TextView txtClass;
     TextView txtPoint;
     Button btnFirst;
+
+    public Button btnPrevious;
+
     public static FragmentInfo newInstance(String arg) {
         FragmentInfo fragment = new FragmentInfo();
         Bundle args = new Bundle();
@@ -53,18 +58,30 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         txtClass=(TextView) layout_info.findViewById(R.id.txtClass);
         txtPoint=(TextView) layout_info.findViewById(R.id.txtPoint);
         btnFirst=(Button) layout_info.findViewById(R.id.btnFirst);
+        btnPrevious=(Button) layout_info.findViewById(R.id.btnPre);
+        btnPrevious.setEnabled(false);
+
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 main.onMsgFromFragToMain("btnFirst",0);
+
             }
         });
-//        try {
-//            Bundle arguments = getArguments();
-//        }
-//        catch (Exception e) {
-//            Log.e("RED BUNDLE ERROR – ", "" + e.getMessage());
-//        }
+
+        btnPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                main.onMsgFromFragToMain("btnPre",0);
+            }
+        });
+        try {
+            Bundle arguments = getArguments();
+        }
+        catch (Exception e) {
+            Log.e("RED BUNDLE ERROR – ", "" + e.getMessage());
+        }
         return layout_info;
     }
 
@@ -74,5 +91,12 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         txtName.setText(fullName);
         txtClass.setText(classId);
         txtPoint.setText(point);
+        if (main.isDisable){
+            btnPrevious.setEnabled(false);
+        }
+        else{
+            btnPrevious.setEnabled(true);
+        }
+
     }
 }
