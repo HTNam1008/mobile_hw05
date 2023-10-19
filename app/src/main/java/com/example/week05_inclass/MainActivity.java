@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
     }
 
     public void onMsgFromFragToMain(String sender, int position) {
-        if(sender.equals("btnFirst"))
+        if(sender.equals("btnFirst") || sender.equals("btnLast"))
         {
             try{
                 fragmentList.onMsgFromMainToFragment(position);

@@ -30,6 +30,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
     Button btnFirst;
 
     public Button btnPrevious;
+    Button btnLast;
 
     public static FragmentInfo newInstance(String arg) {
         FragmentInfo fragment = new FragmentInfo();
@@ -60,6 +61,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         btnFirst=(Button) layout_info.findViewById(R.id.btnFirst);
         btnPrevious=(Button) layout_info.findViewById(R.id.btnPre);
         btnPrevious.setEnabled(false);
+        btnLast = (Button) layout_info.findViewById(R.id.btnLast);
 
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +76,13 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
             @Override
             public void onClick(View v) {
                 main.onMsgFromFragToMain("btnPre",0);
+            }
+        });
+        btnLast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int n = main.fragmentList.id.length;
+                main.onMsgFromFragToMain("btnLast", n - 1);
             }
         });
         try {
