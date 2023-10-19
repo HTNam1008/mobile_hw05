@@ -10,10 +10,6 @@
                 android:width="1dp"
                 android:color="#FFFFFF" />
             <corners android:radius="3dp" />
-            <padding android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
         </shape>
     </item>
 
@@ -24,10 +20,6 @@
                 android:width="1dp"
                 android:color="#FFFFFF" />
             <corners android:radius="3dp" />
-            <padding android:left="10dp"
-                android:top="10dp"
-                android:right="10dp"
-                android:bottom="10dp" />
         </shape>
     </item>
 </selector>
