@@ -112,7 +112,6 @@ public class FragmentList extends Fragment implements FragmentCallBacks{
         }
 
         txtChoosen.setText("Mã số: "+id[position]);
-
         setBackgroundItem(position);
 
         main.onMsgFromFragToMain("list-frag",id[position],fullName[position],classID,points[position],position);

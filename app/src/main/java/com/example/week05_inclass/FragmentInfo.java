@@ -23,9 +23,11 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
     TextView txtPoint;
     Button btnFirst;
 
+
     Button btnPrevious;
     Button btnLast;
     Button btnNext;
+
     public static FragmentInfo newInstance(String arg) {
         FragmentInfo fragment = new FragmentInfo();
         Bundle args = new Bundle();
@@ -57,6 +59,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
 
         btnPrevious=(Button) layout_info.findViewById(R.id.btnPre);
         btnPrevious.setEnabled(false);
+
         btnPrevious.setAlpha(0.5f);
 
         btnLast = (Button) layout_info.findViewById(R.id.btnLast);
@@ -64,6 +67,7 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         btnNext=(Button) layout_info.findViewById(R.id.btnNext);
         btnNext.setEnabled(false);
         btnNext.setAlpha(0.5f);
+
 
         btnFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,9 +112,11 @@ public class FragmentInfo extends Fragment implements FragmentCallBacks {
         txtName.setText(fullName);
         txtClass.setText(classId);
         txtPoint.setText(point);
+
         if (position==0) {
             btnFirst.setEnabled(false);
             btnFirst.setAlpha(0.5f);
+
             btnPrevious.setEnabled(false);
             btnPrevious.setAlpha(0.5f);
 

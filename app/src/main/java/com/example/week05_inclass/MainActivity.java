@@ -33,6 +33,7 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
         if (sender.equals("list-frag")) {
             try {
                 fragmentInfo.onMsgFromMainToFragment(id, "Họ tên: "+fullName,"Lớp: "+classId, "Điểm trung bình: "+point,position);
+
             }
             catch (Exception e) {
                 Log.e("ERROR", e.getMessage());

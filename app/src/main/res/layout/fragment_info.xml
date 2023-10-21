@@ -101,5 +101,4 @@
             android:textColor="@color/black"
             android:textSize="10sp" />
     </LinearLayout>
-
 </LinearLayout>
