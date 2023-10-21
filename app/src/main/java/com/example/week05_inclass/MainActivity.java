@@ -13,9 +13,6 @@ public class MainActivity extends FragmentActivity implements MainCallBacks {
     FragmentList fragmentList;
     FragmentInfo fragmentInfo;
 
-    public boolean isDisable=false;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

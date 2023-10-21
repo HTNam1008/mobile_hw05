@@ -36,7 +36,6 @@ public class FragmentList extends Fragment implements FragmentCallBacks{
     String classID="21CTT2";
     TextView txtChoosen;
     ListView listView;
-    int currentPosition=0;
     int indexBefore=0;
     public static FragmentList newInstance(String arg) {
         FragmentList fragment = new FragmentList();
